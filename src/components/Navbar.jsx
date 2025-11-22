@@ -134,7 +134,7 @@ const Navbar = ({ user, logout }) => {
      </div>
       <hr className="my-1 border-gray-500"/>
       <button onClick={handleLogout} className="flex items-center w-full px-5 py-2 text-red-500 hover:bg-red-500/20 rounded-b-2xl">
-   <FaSignOutAlt className="mr-3"/>  Log Out
+   <FaSignOutAlt className="mr-3"/>  Log-Out
          </button>
         </div>
         )}
