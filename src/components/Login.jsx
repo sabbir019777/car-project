@@ -173,7 +173,7 @@ const Login = ({ setUser }) => {
             />
     </svg>  Continue with Google </button>
 
-        {/* Signup Link */}
+        {/* Signup */}
 
   <p className="text-center text-sm text-gray-400 mt-6">
       Don't have an account?{" "}
