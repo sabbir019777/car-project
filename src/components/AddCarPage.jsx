@@ -189,7 +189,7 @@ const AddCarPage = ({ onNewCarAdded }) => {
                 </div>
                 <div>
     <label className="block text-gray-300 font-semibold mb-1">
-       <i className="fas fa-tag mr-1"></i> Vehicle Category <span className="text-red-500">*</span>
+       <i className="fas fa-tag mr-1"></i> Vehicles Category <span className="text-red-500">*</span>
         </label>
                   <select
        id="category"
