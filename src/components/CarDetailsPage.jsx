@@ -128,7 +128,7 @@ const CarDetailsPage = () => {
           </div>
         </div>
 
-        {/* Similar Cars */}
+        {/* Similar Cars section*/}
 
         <div className="mt-16">
           <h2 className="text-3xl font-bold mb-8 text-yellow-400">
