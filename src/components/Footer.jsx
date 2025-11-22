@@ -112,7 +112,7 @@ const Footer = () => {
       >  Subscribe </button>
    </form>
     <div id="successMessage" className="hidden mt-3 p-2 rounded bg-green-100 border border-green-300 text-green-600 text-sm items-center">
-    <FaShieldAlt className="mr-2" /> Thank you for subscribing!  </div>
+    <FaShieldAlt className="mr-2" /> Thank you for subscribing!!  </div>
           </div>
         </div>
 
