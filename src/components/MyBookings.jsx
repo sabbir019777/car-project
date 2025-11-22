@@ -79,7 +79,7 @@ const MyBookings = () => {
    >
    <div className="relative bg-gray-800/70 backdrop-blur-md rounded-2xl overflow-hidden border border-gray-700 shadow-lg hover:shadow-amber-400/10 transition-all duration-300">
                   
-                  {/* Car Image */}
+                  {/* Car Img */}
 
     <div className="relative h-64 overflow-hidden">
    <img
