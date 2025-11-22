@@ -21,7 +21,6 @@ const Navbar = ({ user, logout }) => {
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  // Navbar state
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

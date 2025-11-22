@@ -33,7 +33,8 @@ const AddCarPage = ({ onNewCarAdded }) => {
     setLoading(true);
 
     try {
-      // Validate required fields
+      // Validate required field
+      
       if (!formData.carName || !formData.rentPrice || !formData.category || !formData.location || !formData.imageUrl) {
         showToast("Please fill all required fields!", "error");
         setLoading(false);
