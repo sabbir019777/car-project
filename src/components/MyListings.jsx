@@ -154,7 +154,7 @@ const MyListings = () => {
   Manage all your listed vehicles, fetched live from your server.  </p>
         </div>
 
-        {/* Stats */}
+        {/* Stats section*/}
 
   <div className="grid md:grid-cols-3 gap-8 mb-16">
      <div className="bg-gray-800 bg-opacity-70 backdrop-blur-md border border-white/10 rounded-2xl p-8 text-center">
