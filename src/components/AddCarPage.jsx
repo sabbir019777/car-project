@@ -49,7 +49,7 @@ const AddCarPage = ({ onNewCarAdded }) => {
         return;
       }
 
-      // Firebase access token
+      // Firebase token
       const accessToken = await currentUser.getIdToken();
 
       const response = await fetch("http://localhost:3000/api/cars", {
@@ -95,21 +95,23 @@ const AddCarPage = ({ onNewCarAdded }) => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 to-black overflow-x-hidden">
-      {/* Background Orbs */}
+
    <div className="absolute inset-0 overflow-hidden -z-10">
       <div className="absolute w-[400px] h-[400px] bg-gradient-to-br from-yellow-400 to-pink-500 rounded-full blur-[80px] top-[-200px] left-[-100px] animate-float"></div>
      <div className="absolute w-[500px] h-[500px] bg-gradient-to-br from-pink-500 to-pink-700 rounded-full blur-[80px] bottom-[-250px] right-[-200px] animate-float animation-delay-5000"></div>
       </div>
 
-      {/* Content */}
+      {/* Content section */}
+
     <div className="relative z-10 max-w-6xl mx-auto px-4 py-20">
         {/* Header */}
+
       <div className="text-center mb-20 animate-fadeInUp">
        <h1 className="font-playfair text-4xl sm:text-5xl md:text-6xl font-bold uppercase bg-gradient-to-r from-yellow-400 via-pink-500 to-pink-700 bg-clip-text text-transparent tracking-wide mb-5">
-            List a New Rental Vehicle
+            List a New Rental Vehicles
       </h1>
    <div className="w-20 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto rounded mb-5"></div>
-      <p className="text-gray-400 text-lg max-w-xl mx-auto">  Maximize your earnings by sharing your vehicle with the RentWheels community.
+      <p className="text-gray-400 text-lg max-w-xl mx-auto">  Maximize your earnings by sharing your vehicle with the RentWheels communitys.
      </p>
         </div>
 
@@ -118,7 +120,6 @@ const AddCarPage = ({ onNewCarAdded }) => {
         <div className="bg-gray-800/70 backdrop-blur-md border border-white/10 rounded-2xl p-10 shadow-2xl animate-fadeInUp">
           <form onSubmit={handleSubmit} className="space-y-10">
 
-            {/* Provider Info */}
 
         <div className="border-b border-white/10 pb-10 space-y-5">
          <h2 className="text-xl font-bold text-white flex items-center">
@@ -173,7 +174,7 @@ const AddCarPage = ({ onNewCarAdded }) => {
                 </div>
                 <div>
        <label className="block text-gray-300 font-semibold mb-1">
-          <i className="fas fa-dollar-sign mr-1"></i> Daily Rental Price (USD) <span className="text-red-500">*</span>
+          <i className="fas fa-dollar-sign mr-1"></i> Daily Rental Prices (USD) <span className="text-red-500">*</span>
                   </label>
      <input
           type="number"

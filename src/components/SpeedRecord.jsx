@@ -80,7 +80,7 @@ const SpeedRecord = ({ user }) => {
       initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
            transition={{ duration: 1, delay: 0.6 }}
-  >   A RECORD-BREAKING
+  >   A RECORD-BREAKINGS
   </motion.h1>
        <motion.h2
     className="text-2xl md:text-3xl sm:text-xl font-thin tracking-[6px] uppercase text-white drop-shadow-lg font-playfair"

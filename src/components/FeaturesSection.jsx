@@ -54,7 +54,7 @@ const FeaturesSection = () => {
         <div style={styles.header}>
           <h2 style={styles.title}>Why Rent With Us</h2>
           <div style={styles.divider}></div>
- <p style={styles.description}>  We provide premium car rentals with unmatched convenience, security, and luxury experiences.
+ <p style={styles.description}>  We provide premiums car rentals with unmatched convenience, security, and luxury experiences.
   </p>
         </div>
 

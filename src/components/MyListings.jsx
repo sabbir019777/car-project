@@ -163,7 +163,7 @@ const MyListings = () => {
     </div>
       <div className="bg-gray-800 bg-opacity-70 backdrop-blur-md border border-white/10 rounded-2xl p-8 text-center">
       <div className="text-4xl font-bold text-green-500 mb-2">{available}</div>
-      <div className="text-gray-400 uppercase tracking-wide">Available</div>
+      <div className="text-gray-400 uppercase tracking-wide">Availables</div>
        </div>
      <div className="bg-gray-800 bg-opacity-70 backdrop-blur-md border border-white/10 rounded-2xl p-8 text-center">
       <div className="text-4xl font-bold text-red-500 mb-2">{booked}</div>

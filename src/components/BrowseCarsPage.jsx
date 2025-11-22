@@ -109,7 +109,7 @@ const BrowseCarsPage = () => {
           </h1>
     <div className="w-20 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto rounded mt-5 mb-5"></div>
     <p className="text-gray-300 max-w-xl mx-auto">
-     Discover the perfect ride for your next journey from our extensive collection of premium rental vehicles.
+     Discover the perfect ride for your next journey from our extensive collections of premium rental vehicles.
           </p>
         </div>
 

@@ -62,7 +62,7 @@ const HeroSection = () => {
               />
      </span>
           </h1>
-  <p className="text-gray-200 text-base sm:text-lg md:text-xl mb-8">  Discover top-tier car rentals with trusted providers. Book easily, drive in style, and enjoy every journey with comfort and luxury.
+  <p className="text-gray-200 text-base sm:text-lg md:text-xl mb-8">  Discover top-tier car rentals with trusted provider. Book easily, drive in style, and enjoy every journey with comfort and luxury.
   </p>
    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
       <motion.button

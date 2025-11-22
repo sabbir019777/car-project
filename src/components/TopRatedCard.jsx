@@ -157,7 +157,7 @@ const [error, setError] = useState(null);
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
     <AnimatePresence>
     {filteredCars.length === 0 && (
-  <p className="col-span-full text-center text-gray-400 text-lg">  No cars found matching your criteria.</p>
+  <p className="col-span-full text-center text-gray-400 text-lg">  No car found matching your criteria.</p>
  )}
 
     {filteredCars.map((car) => (

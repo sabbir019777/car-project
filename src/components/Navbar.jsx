@@ -111,7 +111,7 @@ const Navbar = ({ user, logout }) => {
      </button>
 
     {!user ? (
-     <Link to="/login" className="bg-amber-400 text-gray-900 px-6 py-2 rounded-full font-semibold shadow-lg hover:scale-105 transition">  Log In
+     <Link to="/login" className="bg-amber-400 text-gray-900 px-6 py-2 rounded-full font-semibold shadow-lg hover:scale-105 transition">  Log-In
      </Link>
     ) : (
   <div className="relative hidden lg:block">

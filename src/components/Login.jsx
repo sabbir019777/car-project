@@ -99,7 +99,7 @@ const Login = ({ setUser }) => {
 
   <div className="flex flex-col items-center mb-6">
    <FaCarSide className="text-5xl text-amber-400 mb-2 animate-pulse" />
-    <h2 className="text-3xl font-bold text-amber-400 text-center mb-1">   Welcome Back </h2>   <p className="text-gray-400 text-sm text-center">  Login to continue your journey
+    <h2 className="text-3xl font-bold text-amber-400 text-center mb-1">   Welcome Back </h2>   <p className="text-gray-400 text-sm text-center">  Login to continue yours journey
           </p>
         </div>
 

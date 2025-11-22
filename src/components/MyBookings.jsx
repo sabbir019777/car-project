@@ -56,7 +56,7 @@ const MyBookings = () => {
 
       {/* ✅ Heading */}
 
- <h1 className="text-5xl font-extrabold mb-10 text-center text-amber-400 drop-shadow-lg"> My Bookings
+ <h1 className="text-5xl font-extrabold mb-10 text-center text-amber-400 drop-shadow-lg"> My Booking
  </h1>
 
       {/* ✅ Bookings List */}

@@ -117,7 +117,7 @@ const Testimonials = () => {
         >
      <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-500 to-rose-500 uppercase tracking-wide">  What Our Customers Say  </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-pink-500 mx-auto my-4 rounded-full"></div>
- <p className="text-gray-300 mt-4 max-w-3xl mx-auto text-base sm:text-lg font-light"> Hear from our satisfied clients who experience excellence with every ride.</p>
+ <p className="text-gray-300 mt-4 max-w-3xl mx-auto text-base sm:text-lg font-light"> Hear from our satisfied clients who experience excellence with every rides.</p>
   </motion.div>
 
         {/* Testimonials Grid */}

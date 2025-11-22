@@ -131,7 +131,7 @@ const UpdateCarModal = ({ car, onClose, onSubmit }) => {
       onChange={handleChange}
   className="p-3 rounded bg-gray-800 text-white border border-gray-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors"
      >
-    <option value="available">Available</option>
+    <option value="available">Availables</option>
      <option value="booked">Booked</option>
     </select>
 

@@ -30,7 +30,7 @@ const ErrorPage = () => {
     className="relative inline-block px-8 py-4 bg-white/10 rounded-xl shadow-lg overflow-hidden transition-all hover:scale-105 hover:shadow-2xl hover:bg-gray-800"
   >
     <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent font-bold uppercase text-lg">
-      Back to Home
+      Back  Home
     </span>
 
     {/*  shine effect */}
