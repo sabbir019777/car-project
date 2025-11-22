@@ -119,7 +119,7 @@ const Signup = ({ setUser }) => {
      </p>
         </div>
 
-        {/* Form */}
+        {/* Form section*/}
 
  <form onSubmit={handleRegister} className="space-y-4">
     <input
