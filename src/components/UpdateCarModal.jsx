@@ -32,7 +32,7 @@ const UpdateCarModal = ({ car, onClose, onSubmit }) => {
     setLoading(true);
     try {
 
-      // Firebase current user
+      // Firebase user
 
       const currentUser = auth.currentUser;
       if (!currentUser) {
