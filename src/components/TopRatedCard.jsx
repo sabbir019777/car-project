@@ -151,7 +151,7 @@ const [error, setError] = useState(null);
     </div>
 
 
-        {/* Top Rated Car  */}
+        {/* Top Rated Car section */}
 
   <div className="space-y-16 relative z-10">
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
