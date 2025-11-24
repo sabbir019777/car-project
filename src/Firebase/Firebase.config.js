@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 
 
-// Initialize Firebases
+// Initialize Firebases access
 
 const app = initializeApp(firebaseConfig);
 

@@ -60,11 +60,11 @@ const Signup = ({ setUser }) => {
       const token = await res.user.getIdToken();
 
   const signupUser = {
-   name: res.user.displayName,
- email: res.user.email,
-   photo: res.user.photoURL || "https://i.pravatar.cc/150?img=12",
-        token,
-      };
+  name: res.user.displayName,
+  email: res.user.email,
+  photo: res.user.photoURL || "https://i.pravatar.cc/150?img=12",
+  token,
+};
 
   localStorage.setItem("user", JSON.stringify(signupUser));
       setUser(signupUser);

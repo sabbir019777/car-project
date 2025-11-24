@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  FaSearch,
-  FaUser,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+import { FaSearch, FaUser, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 //  Backend API route
-const API_URL = "http://localhost:3000/api/cars/top-browse";
+const API_URL = "https://car-rental-plantform.vercel.app/api/cars/top-browse";
 
 const BrowseCarsPage = () => {
   const navigate = useNavigate();
@@ -23,18 +19,18 @@ const BrowseCarsPage = () => {
     const fetchCars = async () => {
       setLoading(true);
       try {
-    const response = await axios.get(API_URL);
+        const response = await axios.get(API_URL);
         const processedCars = response.data.map((car) => ({
           id: car._id,
           name: car.name || "Unnamed Car",
           model: car.model || "Unknown Model",
           price: car.price || 0,
           imageUrl:
-     car.imageUrl && car.imageUrl.trim() !== ""
+            car.imageUrl && car.imageUrl.trim() !== ""
               ? car.imageUrl
-       : "https://via.placeholder.com/400x250?text=No+Image",
+              : "https://via.placeholder.com/400x250?text=No+Image",
           category: car.category || "Uncategorized",
-     providerName: car.providerName || "Unknown Provider",
+          providerName: car.providerName || "Unknown Provider",
           location: car.location || "Unknown",
         }));
         setCars(processedCars);
@@ -92,7 +88,6 @@ const BrowseCarsPage = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
-
       {/* Floating Orb */}
 
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
@@ -101,52 +96,56 @@ const BrowseCarsPage = () => {
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-5 py-20">
-
         {/* Header */}
 
-    <div className="text-center mb-20 animate-fadeInUp">
-  <h1 className="font-playfair text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-pink-700 uppercase tracking-wider"> Browse Our Fleet
+        <div className="text-center mb-20 animate-fadeInUp">
+          <h1 className="font-playfair text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-pink-700 uppercase tracking-wider">
+            {" "}
+            Browse Our Fleet
           </h1>
-    <div className="w-20 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto rounded mt-5 mb-5"></div>
-    <p className="text-gray-300 max-w-xl mx-auto">
-     Discover the perfect ride for your next journey from our extensive collections of premium rental vehicles.
+          <div className="w-20 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto rounded mt-5 mb-5"></div>
+          <p className="text-gray-300 max-w-xl mx-auto">
+            Discover the perfect ride for your next journey from our extensive
+            collections of premium rental vehicles.
           </p>
         </div>
 
         {/*  Search & Filter */}
 
         <div className="max-w-3xl mx-auto mb-20 animate-fadeInUp">
-     <div className="flex flex-wrap gap-5 bg-gray-800/70 backdrop-blur-lg border border-gray-700 rounded-2xl p-7 shadow-lg">
-    <div className="flex-1 min-w-[250px] relative">
-        <input
+          <div className="flex flex-wrap gap-5 bg-gray-800/70 backdrop-blur-lg border border-gray-700 rounded-2xl p-7 shadow-lg">
+            <div className="flex-1 min-w-[250px] relative">
+              <input
                 type="text"
                 placeholder="Search by car name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-5 py-3 rounded-xl bg-gray-700/80 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-5 py-3 rounded-xl bg-gray-700/80 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
               />
-       <FaSearch className="absolute right-5 top-1/2 -translate-y-1/2 text-yellow-400" />
+              <FaSearch className="absolute right-5 top-1/2 -translate-y-1/2 text-yellow-400" />
             </div>
 
             <div className="min-w-[200px]">
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-        className="w-full px-5 py-3 rounded-xl bg-gray-700/80 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-5 py-3 rounded-xl bg-gray-700/80 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
               >
-         <option value="All">All Categories</option>
-       <option value="Electric">Electric</option>
-      <option value="Luxury">Luxury</option>
-        <option value="Sedan">Sedan</option>
-       <option value="SUV">SUV</option>
-       <option value="Hatchback">Hatchback</option>
-     </select>
+                <option value="All">All Categories</option>
+                <option value="Electric">Electric</option>
+                <option value="Luxury">Luxury</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Hatchback">Hatchback</option>
+              </select>
             </div>
 
             <button
               onClick={applyFilters}
-       className="px-7 py-3 bg-gradient-to-br from-yellow-400 to-pink-500 text-black font-semibold rounded-xl shadow-lg hover:translate-y-[-2px] transition-all"
-            >  Apply Filters
+              className="px-7 py-3 bg-gradient-to-br from-yellow-400 to-pink-500 text-black font-semibold rounded-xl shadow-lg hover:translate-y-[-2px] transition-all"
+            >
+              {" "}
+              Apply Filters
             </button>
           </div>
         </div>
@@ -161,52 +160,56 @@ const BrowseCarsPage = () => {
 
         {/*  Cars Grid */}
 
-    {!loading && filteredCars.length > 0 && (
+        {!loading && filteredCars.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
             {filteredCars.map((car) => (
               <div
                 key={car.id}
-         className="relative bg-gray-800/70 backdrop-blur-lg border border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition-transform"
+                className="relative bg-gray-800/70 backdrop-blur-lg border border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition-transform"
               >
                 <div className="absolute top-5 left-5 px-3 py-1 bg-black/70 text-white text-xs font-semibold rounded-full backdrop-blur-sm">
                   {car.category}
                 </div>
 
-  <img
-        src={car.imageUrl}
-         alt={car.name}
-           className="w-full h-56 object-cover transition-transform duration-700 hover:scale-105 cursor-pointer"
-          onClick={() => viewDetails(car)}
-      />
+                <img
+                  src={car.imageUrl}
+                  alt={car.name}
+                  className="w-full h-56 object-cover transition-transform duration-700 hover:scale-105 cursor-pointer"
+                  onClick={() => viewDetails(car)}
+                />
 
                 <div className="p-6">
-        <div className="flex justify-between mb-3">
+                  <div className="flex justify-between mb-3">
                     <div>
-              <h3 className="text-white font-bold text-lg">{car.name}</h3>
-         <p className="text-gray-400 text-sm">{car.model}</p>
-                </div>
-           <div className="text-yellow-400 font-bold text-lg">
+                      <h3 className="text-white font-bold text-lg">
+                        {car.name}
+                      </h3>
+                      <p className="text-gray-400 text-sm">{car.model}</p>
+                    </div>
+                    <div className="text-yellow-400 font-bold text-lg">
                       ${car.price}
-             <span className="text-gray-400 text-sm">/day</span>
+                      <span className="text-gray-400 text-sm">/day</span>
                     </div>
                   </div>
 
-          <div className="mb-4">
-        <div className="flex items-center text-gray-300 text-sm mb-1">
-      <FaUser className="mr-2 text-yellow-400" />
+                  <div className="mb-4">
+                    <div className="flex items-center text-gray-300 text-sm mb-1">
+                      <FaUser className="mr-2 text-yellow-400" />
                       Provider: {car.providerName}
-         </div>
-        <div className="flex items-center text-gray-300 text-sm">
-    <FaMapMarkerAlt className="mr-2 text-yellow-400" />
+                    </div>
+                    <div className="flex items-center text-gray-300 text-sm">
+                      <FaMapMarkerAlt className="mr-2 text-yellow-400" />
                       Location: {car.location}
-           </div>
+                    </div>
                   </div>
 
-        <button
-        onClick={() => viewDetails(car)}
-          className="w-full py-3 rounded-xl font-semibold text-sm uppercase tracking-wide bg-gradient-to-br from-yellow-400 to-pink-500 text-black shadow-lg hover:-translate-y-1 transition-all"
-        >  View Details
-     </button>
+                  <button
+                    onClick={() => viewDetails(car)}
+                    className="w-full py-3 rounded-xl font-semibold text-sm uppercase tracking-wide bg-gradient-to-br from-yellow-400 to-pink-500 text-black shadow-lg hover:-translate-y-1 transition-all"
+                  >
+                    {" "}
+                    View Details
+                  </button>
                 </div>
               </div>
             ))}
@@ -215,19 +218,24 @@ const BrowseCarsPage = () => {
 
         {/*  Empty State */}
 
-    {!loading && filteredCars.length === 0 && (
-     <div className="text-center p-16 bg-gray-800/70 backdrop-blur-lg border border-gray-700 rounded-2xl max-w-xl mx-auto">
+        {!loading && filteredCars.length === 0 && (
+          <div className="text-center p-16 bg-gray-800/70 backdrop-blur-lg border border-gray-700 rounded-2xl max-w-xl mx-auto">
             <div className="text-yellow-400 text-4xl mb-4">
-     <FaMapMarkerAlt className="mx-auto" />
+              <FaMapMarkerAlt className="mx-auto" />
             </div>
-       <h2 className="text-white text-2xl font-bold mb-3">No Cars Found</h2>
-       <p className="text-gray-400 mb-5">
-    We couldn't find any vehicles matching your criteria. Try adjusting your search or filters!
+            <h2 className="text-white text-2xl font-bold mb-3">
+              No Cars Found
+            </h2>
+            <p className="text-gray-400 mb-5">
+              We couldn't find any vehicles matching your criteria. Try
+              adjusting your search or filters!
             </p>
-      <button
+            <button
               onClick={clearFilters}
-       className="px-7 py-3 bg-gradient-to-br from-yellow-400 to-pink-500 text-black font-semibold rounded-xl shadow-lg hover:-translate-y-1 transition-all"
-        > Clear Filters
+              className="px-7 py-3 bg-gradient-to-br from-yellow-400 to-pink-500 text-black font-semibold rounded-xl shadow-lg hover:-translate-y-1 transition-all"
+            >
+              {" "}
+              Clear Filters
             </button>
           </div>
         )}
