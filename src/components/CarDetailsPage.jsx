@@ -7,24 +7,24 @@ import { FaUser, FaMapMarkerAlt, FaDollarSign, FaCarSide } from "react-icons/fa"
 const similarCarsMock = [
   {
     id: "c003",
-    name: "Toyota Corolla",
-    price: 80,
+    name: "Koenigsegg Jesko",
+    price: 800,
     imageUrl:
-    "https://i.ytimg.com/vi/8U6RyrbvinE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARVIHDYpxROzB1kKicM3U74GPSqA",
+    "https://flavoredtimes.com/wp-content/uploads/2024/12/koenigsegg.jpg",
   },
   {
     id: "c011",
-    name: "Toyota RAV4",
-    price: 180,
+    name: "Aston Martin Valkyrie",
+    price: 1180,
     imageUrl:
-     "https://hips.hearstapps.com/hmg-prod/images/20241226-autosalon03-676eca48cee33.jpg?crop=1.00xw:0.870xh;0,0.0776xh&resize=1200:*",
+     "https://www.carscoops.com/wp-content/uploads/2024/02/Aston-martin-Valkyrieaa.jpg",
   },
   {
     id: "c015",
-    name: "Mini Cooper",
-    price: 105,
+    name: "SSC Tuatara",
+    price: 1150,
     imageUrl:
-      "https://www.mini.in/en_IN/home/explore/concept-cars/mini-vision-next100/_jcr_content/main/par/parallax/advancedImageGallery/row/item/image/damImage.narrow.768w.j_1472048225956.jpg",
+      "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/2025/02/67be3d1c79f883d4efb3ae42_hk-88-of-234-1.jpg?w=1600&h=900&fit=crop",
   },
 ];
 

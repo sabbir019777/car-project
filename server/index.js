@@ -8,20 +8,21 @@ const serviceAccount = require("./plantKey.json");
 
 const app = express();
 
-// ✅ Vercel auto-assigned port
+
 const port = process.env.PORT || 3000;
 
 // Firebase Admin
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-// ✅ CORS: Localhost + Netlify frontend
+
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // local dev
-      "https://your-frontend.netlify.app", // Netlify frontend URL
+      "http://localhost:5173",
+      "https://car-rental-plantform.netlify.app",
     ],
     credentials: true,
   })
@@ -30,6 +31,7 @@ app.use(
 app.use(express.json());
 
 // MongoDB URI
+
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.5u4x9tc.mongodb.net/?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
@@ -41,6 +43,7 @@ const client = new MongoClient(uri, {
 });
 
 // Token Verification Middleware
+
 async function verifyToken(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
@@ -60,7 +63,8 @@ async function verifyToken(req, res, next) {
   }
 }
 
-// Server main function
+// Server function
+
 async function run() {
   try {
     // await client.connect();
@@ -71,21 +75,25 @@ async function run() {
     const bookingsCollection = db.collection("bookings");
 
     // Root
+
     app.get("/", (req, res) => res.send("Car Rental Server Running Successfully!"));
 
     // Top Cars
+
     app.get("/api/cars/top-rated", async (req, res) => {
       const cars = await carsCollection.find({}).limit(21).toArray();
       res.json(cars);
     });
 
     // Browse Cars
+
     app.get("/api/cars/top-browse", async (req, res) => {
       const cars = await carsCollection.find({}).limit(27).toArray();
       res.json(cars);
     });
 
     // My Listings
+
     app.get("/api/car/my-listings", verifyToken, async (req, res) => {
       const email = req.user.email;
       const cars = await carsCollection.find({ providerEmail: email }).toArray();
@@ -93,6 +101,7 @@ async function run() {
     });
 
     // Add Car
+
     app.post("/api/cars", verifyToken, async (req, res) => {
       const car = req.body;
       car.providerEmail = req.user.email;
@@ -102,6 +111,7 @@ async function run() {
     });
 
     // Single Car
+
     app.get("/api/cars/:id", async (req, res) => {
       const car = await carsCollection.findOne({ _id: new ObjectId(req.params.id) });
       if (!car) return res.status(404).json({ message: "Car not found" });
@@ -109,6 +119,7 @@ async function run() {
     });
 
     // Update Car
+
     app.put("/api/cars/:id", verifyToken, async (req, res) => {
       const carId = req.params.id;
       const email = req.user.email;
@@ -124,6 +135,7 @@ async function run() {
     });
 
     // Delete Car
+
     app.delete("/api/cars/:id", verifyToken, async (req, res) => {
       const carId = req.params.id;
       const email = req.user.email;
@@ -136,7 +148,9 @@ async function run() {
       res.json({ message: "Car deleted successfully" });
     });
 
+
     // Book a Car
+
     app.post("/api/cars/:id/book", verifyToken, async (req, res) => {
       const carId = req.params.id;
       const car = await carsCollection.findOne({ _id: new ObjectId(carId) });
@@ -159,6 +173,7 @@ async function run() {
     });
 
     // Search Cars
+
     app.get("/api/cars/search", async (req, res) => {
       const q = req.query.q || "";
       const cars = await carsCollection.find({ name: { $regex: q, $options: "i" } }).toArray();
@@ -174,4 +189,5 @@ async function run() {
 run().catch(console.error);
 
 // Listen
+
 app.listen(port, () => console.log(`✅ Server running on port ${port}`));
