@@ -19,7 +19,7 @@ const Signup = ({ setUser }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+ 
   const validatePassword = (password) => {
     const upper = /[A-Z]/.test(password);
     const lower = /[a-z]/.test(password);

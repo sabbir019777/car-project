@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaSearch, FaUser, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { endpoint } from "../api";
 
-// ✅ Correct Backend API route
-const API_URL = "https://car-rental-plantform.vercel.app/api/cars/top-browse";
+const API_URL = endpoint("/api/cars/top-browse");
 
 const BrowseCarsPage = () => {
   const navigate = useNavigate();
@@ -98,7 +98,8 @@ const BrowseCarsPage = () => {
           </h1>
           <div className="w-20 h-1 bg-gradient-to-r from-yellow-400 to-pink-500 mx-auto rounded mt-5 mb-5"></div>
           <p className="text-gray-300 max-w-xl mx-auto">
-            Discover the perfect ride for your next journey from our premium rental vehicles.
+            Discover the perfect ride for your next journey from our premium
+            rental vehicles.
           </p>
         </div>
 
@@ -169,7 +170,9 @@ const BrowseCarsPage = () => {
                 <div className="p-6">
                   <div className="flex justify-between mb-3">
                     <div>
-                      <h3 className="text-white font-bold text-lg">{car.name}</h3>
+                      <h3 className="text-white font-bold text-lg">
+                        {car.name}
+                      </h3>
                       <p className="text-gray-400 text-sm">{car.model}</p>
                     </div>
                     <div className="text-yellow-400 font-bold text-lg">
@@ -180,10 +183,12 @@ const BrowseCarsPage = () => {
 
                   <div className="mb-4">
                     <div className="flex items-center text-gray-300 text-sm mb-1">
-                      <FaUser className="mr-2 text-yellow-400" /> Provider: {car.providerName}
+                      <FaUser className="mr-2 text-yellow-400" /> Provider:{" "}
+                      {car.providerName}
                     </div>
                     <div className="flex items-center text-gray-300 text-sm">
-                      <FaMapMarkerAlt className="mr-2 text-yellow-400" /> Location: {car.location}
+                      <FaMapMarkerAlt className="mr-2 text-yellow-400" />{" "}
+                      Location: {car.location}
                     </div>
                   </div>
 
@@ -205,9 +210,12 @@ const BrowseCarsPage = () => {
             <div className="text-yellow-400 text-4xl mb-4">
               <FaMapMarkerAlt className="mx-auto" />
             </div>
-            <h2 className="text-white text-2xl font-bold mb-3">No Cars Found</h2>
+            <h2 className="text-white text-2xl font-bold mb-3">
+              No Cars Found
+            </h2>
             <p className="text-gray-400 mb-5">
-              We couldn't find any vehicles matching your criteria. Try adjusting your search or filters!
+              We couldn't find any vehicles matching your criteria. Try
+              adjusting your search or filters!
             </p>
             <button
               onClick={clearFilters}

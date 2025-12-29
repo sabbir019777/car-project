@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getAuth } from "firebase/auth";
+import { endpoint } from "../api";
 
 const AddCarPage = ({ onNewCarAdded }) => {
   const [formData, setFormData] = useState({
@@ -58,25 +59,22 @@ const AddCarPage = ({ onNewCarAdded }) => {
       // Firebase token
       const accessToken = await currentUser.getIdToken();
 
-      const response = await fetch(
-        "https://car-rental-plantform.vercel.app/api/cars",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            email: currentUser.email,
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            name: formData.carName,
-            price: formData.rentPrice,
-            category: formData.category,
-            location: formData.location,
-            imageUrl: formData.imageUrl,
-            description: formData.description,
-          }),
-        }
-      );
+      const response = await fetch(endpoint("/api/cars"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          email: currentUser.email,
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          name: formData.carName,
+          price: formData.rentPrice,
+          category: formData.category,
+          location: formData.location,
+          imageUrl: formData.imageUrl,
+          description: formData.description,
+        }),
+      });
 
       if (!response.ok) throw new Error("Failed to add car");
 

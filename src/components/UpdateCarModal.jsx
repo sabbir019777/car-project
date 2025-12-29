@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { getAuth } from "firebase/auth";
+import { endpoint } from "../api";
 
 const UpdateCarModal = ({ car, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -45,17 +46,14 @@ const UpdateCarModal = ({ car, onClose, onSubmit }) => {
 
       // Update request
 
-      const response = await fetch(
-        `https://car-rental-plantform.vercel.app/api/cars/${car._id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`, // 🔹
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(endpoint(`/api/cars/${car._id}`), {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(formData),
+      });
 
       const result = await response.json();
 

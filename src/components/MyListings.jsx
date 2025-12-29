@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import UpdateCarModal from "./UpdateCarModal";
+import { endpoint } from "../api";
 
 const MyListings = () => {
   const [cars, setCars] = useState([]);
@@ -40,15 +41,12 @@ const MyListings = () => {
       setError(null);
 
       try {
-        const response = await fetch(
-          "https://car-rental-plantform.vercel.app/api/car/my-listings",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
+        const response = await fetch(endpoint("/api/car/my-listings"), {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
 
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
@@ -77,7 +75,7 @@ const MyListings = () => {
 
     try {
       const response = await fetch(
-        `https://car-rental-plantform.vercel.app/api/cars/${deleteCandidate._id}`,
+        endpoint(`/api/cars/${deleteCandidate._id}`),
         {
           method: "DELETE",
           headers: {

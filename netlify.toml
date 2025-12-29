@@ -1,0 +1,24 @@
+# Netlify Build Configuration
+# This file is optional but helps Netlify auto-detect build settings
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # ⚠️ Set this in Netlify UI under Site Settings → Environment
+  # VITE_API_BASE should point to your Vercel backend, e.g.:
+  # VITE_API_BASE=https://car-rental-plantform.vercel.app
+
+# Redirect API calls if needed (for serverless functions)
+[[redirects]]
+  from = "/api/*"
+  to = "https://car-rental-plantform.vercel.app/:splat"
+  status = 200
+
+# Cache settings
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"

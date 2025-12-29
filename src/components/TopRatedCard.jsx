@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { auth } from "../Firebase/Firebase.config";
 import axios from "axios";
+import { endpoint } from "../api";
 
-const API_URL = "https://car-rental-plantform.vercel.app/api/cars/top-rated";
+const API_URL = endpoint("/api/cars/top-rated");
 
 const TopRatedCard = () => {
   const navigate = useNavigate();
