@@ -2,7 +2,7 @@
 
 ## Root Cause
 
-Frontend deployed on Netlify was trying to reach `http://localhost:3000` (fallback) instead of the actual Vercel backend URL, because the `VITE_API_BASE` environment variable was never set during the Netlify build.
+Frontend deployed on Netlify was trying to reach `https://car-rental-plantform.vercel.app` (fallback) instead of the actual Vercel backend URL, because the `VITE_API_BASE` environment variable was never set during the Netlify build.
 
 ## ✅ What Was Fixed
 
@@ -140,7 +140,7 @@ VITE_API_BASE = https://your-vercel-backend.vercel.app
 
 ```
 # Root .env.local
-VITE_API_BASE=http://localhost:3000
+VITE_API_BASE=https://car-rental-plantform.vercel.app
 
 # server/.env
 DB_USERNAME=local_mongo_user
@@ -162,7 +162,7 @@ For Vercel, consider using `FIREBASE_SERVICE_ACCOUNT` env var instead of the fil
 
 ## 📞 If You Still Get Errors
 
-1. **"GET http://localhost:3000/api/cars/top-browse net::ERR_CONNECTION_REFUSED"**
+1. **"GET https://car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED"**
    → `VITE_API_BASE` not set on Netlify. Check Netlify env vars and rebuild.
 
 2. **"Failed to load cars. Please ensure backend server is running on port 3000"**

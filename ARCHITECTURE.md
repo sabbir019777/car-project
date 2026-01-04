@@ -12,12 +12,12 @@ LOCAL DEVELOPMENT:
 │ Browser: http://localhost:5173                               │
 ├──────────────────────────────────────────────────────────────┤
 │ Frontend (Vite + React)                                      │
-│  ├─ src/api.js reads: VITE_API_BASE = http://localhost:3000 │
-│  └─ All API calls → http://localhost:3000/api/*             │
+│  ├─ src/api.js reads: VITE_API_BASE = https://car-rental-plantform.vercel.app │
+│  └─ All API calls → https://car-rental-plantform.vercel.app/api/*             │
 ├──────────────────────────────────────────────────────────────┤
 │            ↕ HTTP (Axios, Fetch)                            │
 ├──────────────────────────────────────────────────────────────┤
-│ Backend (Express + Node.js): http://localhost:3000          │
+│ Backend (Express + Node.js): https://car-rental-plantform.vercel.app          │
 │  ├─ CORS allows: http://localhost:5173                      │
 │  ├─ MongoDB connected locally                               │
 │  └─ Firebase auth enabled                                   │
@@ -67,7 +67,7 @@ React component (BrowseCarsPage.jsx) loads
           ↓
 Calls: endpoint("/api/cars/top-browse")
           ↓
-src/api.js resolves to: http://localhost:3000/api/cars/top-browse
+src/api.js resolves to: https://car-rental-plantform.vercel.app/api/cars/top-browse
           ↓
 Axios GET request sent to backend
           ↓
@@ -113,7 +113,7 @@ Frontend displays cars to user ✅
 ```
 ┌─ DEVELOPMENT ─────────────────────────┐
 │ .env.local (root folder)              │
-│ ├─ VITE_API_BASE=http://localhost:3000│
+│ ├─ VITE_API_BASE=https://car-rental-plantform.vercel.app│
 │ └─ (ignored by Git)                   │
 │                                        │
 │ server/.env                            │
@@ -175,7 +175,7 @@ When deployed to NETLIFY:
   → Localhost doesn't exist on Netlify → Connection refused ❌
 
 WHY LOCALHOST IS FALLBACK:
-  → src/api.js: import.meta.env.VITE_API_BASE || "http://localhost:3000"
+  → src/api.js: import.meta.env.VITE_API_BASE || "https://car-rental-plantform.vercel.app"
   → If VITE_API_BASE not set, use localhost
   → If VITE_API_BASE not set on Netlify → uses localhost → error
 ```

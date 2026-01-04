@@ -3,7 +3,7 @@
 ## 🎯 Problem Solved
 
 Your MongoDB data wasn't loading on Netlify because:
-- ❌ Frontend tried to reach `http://localhost:3000`
+- ❌ Frontend tried to reach `https://car-rental-plantform.vercel.app`
 - ❌ Backend was on Vercel, not localhost
 - ❌ `VITE_API_BASE` env var wasn't set on Netlify
 
@@ -19,7 +19,7 @@ import { endpoint } from "../api"
 const API_URL = endpoint("/api/cars/top-rated")
 
 // src/api.js reads VITE_API_BASE at runtime
-export const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000"
+export const API_BASE = import.meta.env.VITE_API_BASE || "https://car-rental-plantform.vercel.app"
 ```
 
 ### 2. Backend Production-Ready

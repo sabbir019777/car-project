@@ -58,7 +58,7 @@ Use this checklist to track your deployment progress.
 
 ## Troubleshooting
 
-### Error: `GET http://localhost:3000/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET https://car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 **Problem:** Frontend still trying to hit localhost.
 

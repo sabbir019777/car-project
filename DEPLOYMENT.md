@@ -2,7 +2,7 @@
 
 ## Problem Summary
 
-When deployed to Netlify, the frontend tries to reach `http://localhost:3000` (the fallback), which doesn't exist in production. The backend is deployed to Vercel, but the frontend doesn't know the URL.
+When deployed to Netlify, the frontend tries to reach `https://car-rental-plantform.vercel.app` (the fallback), which doesn't exist in production. The backend is deployed to Vercel, but the frontend doesn't know the URL.
 
 **Solution:** Set `VITE_API_BASE` environment variable on Netlify pointing to your Vercel backend.
 
@@ -107,7 +107,7 @@ When deployed to Netlify, the frontend tries to reach `http://localhost:3000` (t
 
 ## Troubleshooting
 
-### Error: `GET http://localhost:3000/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET https://car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 **Cause:** `VITE_API_BASE` is not set on Netlify.
 
@@ -170,7 +170,7 @@ npm run dev
 Make sure `.env` in the root has:
 
 ```
-VITE_API_BASE=http://localhost:3000
+VITE_API_BASE=https://car-rental-plantform.vercel.app
 ```
 
 ---

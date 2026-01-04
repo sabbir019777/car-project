@@ -7,7 +7,7 @@
 **File: `.env.local` (root directory)**
 
 ```bash
-VITE_API_BASE=http://localhost:3000
+VITE_API_BASE=https://car-rental-plantform.vercel.app
 ```
 
 **File: `server/.env`**

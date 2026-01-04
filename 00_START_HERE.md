@@ -2,7 +2,7 @@
 
 ## Problem
 
-Frontend on Netlify showed error: `GET http://localhost:3000/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+Frontend on Netlify showed error: `GET https://car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 - Reason: Frontend tried to reach `localhost:3000` (fallback) instead of Vercel backend
 - Root cause: `VITE_API_BASE` environment variable not set during Netlify build
@@ -167,7 +167,7 @@ Result: Data loads successfully ✅
 
 ## 🐛 Troubleshooting
 
-### Error: `GET http://localhost:3000/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET https://car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 **Cause:** `VITE_API_BASE` not set on Netlify
 
@@ -271,7 +271,7 @@ Vite embeds environment variables **at build time**. If `VITE_API_BASE` is:
 
 ```javascript
 export const API_BASE =
-  import.meta.env.VITE_API_BASE || "http://localhost:3000";
+  import.meta.env.VITE_API_BASE || "https://car-rental-plantform.vercel.app";
 ```
 
 ---
