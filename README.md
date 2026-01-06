@@ -50,7 +50,7 @@ A modern car rental application built with React, Vite, Firebase, and MongoDB.
 
    ```bash
    # Frontend (.env.local in root)
-   VITE_API_BASE=https://car-rental-plantform.vercel.app
+   VITE_API_BASE=https://car-rental-plantform-1on34o919-cardioy.vercel.app
 
    # Backend (server/.env)
    DB_USERNAME=your_mongodb_username
@@ -72,7 +72,7 @@ A modern car rental application built with React, Vite, Firebase, and MongoDB.
 
    # Terminal 2: Backend (from root)
    cd server && npm start
-   # Runs on https://car-rental-plantform.vercel.app
+   # Runs on https://car-rental-plantform-1on34o919-cardioy.vercel.app
    ```
 
 ## 🌐 Deployment
@@ -100,7 +100,7 @@ node scripts/deployment-check.js
 
 ## 🐛 Troubleshooting
 
-### Error: `GET https://car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 → `VITE_API_BASE` is not set on Netlify. See [DEPLOYMENT.md](./DEPLOYMENT.md#troubleshooting)
 

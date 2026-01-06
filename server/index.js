@@ -7,7 +7,7 @@ const admin = require("firebase-admin");
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ✅ ১. রুট রাউট বাইরে নিয়ে আসা হয়েছে (Vercel Fix)
+
 app.get("/", (req, res) => {
   res.send("Car Rental Server is running properly!");
 });
@@ -37,8 +37,8 @@ if (serviceAccount && admin.apps.length === 0) {
   console.log("✅ Firebase Admin initialized");
 }
 
-// --- CORS Configuration ---
-const FRONTEND_URLS = process.env.FRONTEND_URLS || "http://localhost:5173,http://localhost:5174,https://spontaneous-clafoutis-c5c9c8.netlify.app";
+const FRONTEND_URLS = process.env.FRONTEND_URLS || "http://localhost:5173,https://amazing-bavarois-33f61c.netlify.app,https://car-rental-plantform-1on34o919-cardioy.vercel.app";
+
 const allowedOrigins = FRONTEND_URLS.split(",").map((u) => u.trim());
 
 app.use(
@@ -88,7 +88,7 @@ async function verifyToken(req, res, next) {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
     console.log("✅ MongoDB Connected Successfully!");
 
     const db = client.db("car");
@@ -120,7 +120,7 @@ async function run() {
       res.json(result);
     });
 
-    // ✅ ২. অ্যাডমিন ফিক্স: এখন যেকোনো ইমেইল দিয়ে সিক্রেট কি ব্যবহার করে অ্যাডমিন হওয়া যাবে
+    // অ্যাডমিন ফিক্স
     app.patch("/api/users/make-admin", verifyToken, async (req, res) => {
       const { secretKey, email } = req.body;
       const ADMIN_SECRET_KEY = "Sabbir@1234"; 
@@ -182,11 +182,13 @@ async function run() {
       res.json(result);
     });
 
+    // ✅ Top Rated (এটি /:id এর উপরে আছে - ঠিক আছে)
     app.get("/api/cars/top-rated", async (req, res) => {
       const cars = await carsCollection.find({}).sort({rating: -1}).limit(20).toArray();
       res.json(cars);
     });
 
+    // ✅ Top Browse (এটি অবশ্যই /:id এর উপরে থাকতে হবে - ঠিক আছে)
     app.get("/api/cars/top-browse", async (req, res) => {
       try {
         const result = await carsCollection.find({}).sort({ createdAt: -1 }).limit(28).toArray();
@@ -208,9 +210,11 @@ async function run() {
       res.json(result);
     });
 
+    // 🔻 Single Car Details (এটি অবশ্যই সবশেষে থাকবে)
     app.get("/api/cars/:id", async (req, res) => {
       try {
         const id = req.params.id;
+        // চেক করা হচ্ছে ID টি ভ্যালিড কিনা, যাতে top-browse বা অন্য কিছু আসলে ক্র্যাশ না করে
         if (!ObjectId.isValid(id)) return res.status(400).send("Invalid ID");
         const query = { _id: new ObjectId(id) };
         const result = await carsCollection.findOne(query);
@@ -287,5 +291,14 @@ async function run() {
   }
 }
 
-run().catch(console.error);
-app.listen(port, () => console.log(`🚀 Port: ${port}`));
+
+async function startServer() {
+  try {
+    await run();
+    app.listen(port, () => console.log(`🚀 Port: ${port}`));
+  } catch (error) {
+    console.error("Failed to start server:", error);
+  }
+}
+
+startServer();

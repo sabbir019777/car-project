@@ -7,7 +7,7 @@
 **File: `.env.local` (root directory)**
 
 ```bash
-VITE_API_BASE=https://car-rental-plantform.vercel.app
+VITE_API_BASE=https://car-rental-plantform-1on34o919-cardioy.vercel.app
 ```
 
 **File: `server/.env`**
@@ -49,9 +49,9 @@ PORT=3000
 
 ### Go to: Netlify → Your Site → Site Settings → Build & Deploy → Environment
 
-| Key             | Value                   | Example                                   |
-| --------------- | ----------------------- | ----------------------------------------- |
-| `VITE_API_BASE` | Your Vercel backend URL | `https://car-rental-plantform.vercel.app` |
+| Key             | Value                   | Example                                                     |
+| --------------- | ----------------------- | ----------------------------------------------------------- |
+| `VITE_API_BASE` | Your Vercel backend URL | `https://car-rental-plantform-1on34o919-cardioy.vercel.app` |
 
 **When to set:**
 
@@ -109,7 +109,7 @@ PORT=3000
 
 ```bash
 # In browser, visit:
-https://car-rental-plantform.vercel.app/
+https://car-rental-plantform-1on34o919-cardioy.vercel.app/
 
 # Should see:
 Car Rental Server Running Successfully!

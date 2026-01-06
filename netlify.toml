@@ -8,12 +8,12 @@
 [build.environment]
   # ⚠️ Set this in Netlify UI under Site Settings → Environment
   # VITE_API_BASE should point to your Vercel backend, e.g.:
-  # VITE_API_BASE=https://car-rental-plantform.vercel.app
+  # VITE_API_BASE=https://car-rental-plantform-1on34o919-cardioy.vercel.app
 
 # Redirect API calls if needed (for serverless functions)
 [[redirects]]
   from = "/api/*"
-  to = "https://car-rental-plantform.vercel.app/:splat"
+  to = "https://car-rental-plantform-1on34o919-cardioy.vercel.app/:splat"
   status = 200
 
 # Cache settings
