@@ -12,12 +12,12 @@ LOCAL DEVELOPMENT:
 │ Browser: http://localhost:5173                               │
 ├──────────────────────────────────────────────────────────────┤
 │ Frontend (Vite + React)                                      │
-│  ├─ src/api.js reads: VITE_API_BASE = https://car-rental-plantform-1on34o919-cardioy.vercel.app │
-│  └─ All API calls → https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/*             │
+│  ├─ src/api.js reads: VITE_API_BASE = car-rental-plantform.vercel.app │
+│  └─ All API calls → car-rental-plantform.vercel.app/api/*             │
 ├──────────────────────────────────────────────────────────────┤
 │            ↕ HTTP (Axios, Fetch)                            │
 ├──────────────────────────────────────────────────────────────┤
-│ Backend (Express + Node.js): https://car-rental-plantform-1on34o919-cardioy.vercel.app          │
+│ Backend (Express + Node.js): car-rental-plantform.vercel.app          │
 │  ├─ CORS allows: http://localhost:5173                      │
 │  ├─ MongoDB connected locally                               │
 │  └─ Firebase auth enabled                                   │
@@ -36,13 +36,13 @@ PRODUCTION DEPLOYMENT:
 │ Frontend (Deployed on Netlify)                               │
 │ https://your-site.netlify.app                                │
 │  ├─ Vite reads: VITE_API_BASE env var during build          │
-│  ├─ = https://car-rental-plantform-1on34o919-cardioy.vercel.app              │
+│  ├─ = car-rental-plantform.vercel.app              │
 │  └─ All API calls → https://car-rental-plantform.../* │
 ├──────────────────────────────────────────────────────────────┤
 │            ↕ HTTPS                                          │
 ├──────────────────────────────────────────────────────────────┤
 │ Backend (Deployed on Vercel)                                 │
-│ https://car-rental-plantform-1on34o919-cardioy.vercel.app                     │
+│ car-rental-plantform.vercel.app                     │
 │  ├─ CORS allows: https://your-site.netlify.app             │
 │  ├─ MongoDB Atlas connected                                 │
 │  └─ Firebase auth enabled                                   │
@@ -67,7 +67,7 @@ React component (BrowseCarsPage.jsx) loads
           ↓
 Calls: endpoint("/api/cars/top-browse")
           ↓
-src/api.js resolves to: https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-browse
+src/api.js resolves to: car-rental-plantform.vercel.app/api/cars/top-browse
           ↓
 Axios GET request sent to backend
           ↓
@@ -91,7 +91,7 @@ Calls: endpoint("/api/cars/top-browse")
           ↓
 src/api.js reads VITE_API_BASE env var (set during Netlify build)
           ↓
-= https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-browse
+= car-rental-plantform.vercel.app/api/cars/top-browse
           ↓
 Axios GET request sent to Vercel backend
           ↓
@@ -113,7 +113,7 @@ Frontend displays cars to user ✅
 ```
 ┌─ DEVELOPMENT ─────────────────────────┐
 │ .env.local (root folder)              │
-│ ├─ VITE_API_BASE=https://car-rental-plantform-1on34o919-cardioy.vercel.app│
+│ ├─ VITE_API_BASE=car-rental-plantform.vercel.app│
 │ └─ (ignored by Git)                   │
 │                                        │
 │ server/.env                            │
@@ -148,14 +148,14 @@ Frontend displays cars to user ✅
 
 ## Key Improvements Made
 
-| Component              | Before                                                                 | After                                                                 |
-| ---------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| **Frontend API URL**   | Hardcoded: `https://car-rental-plantform-1on34o919-cardioy.vercel.app` | Dynamic: reads `VITE_API_BASE` env var                                |
-| **Backend CORS**       | Hardcoded allowed origins                                              | Reads `FRONTEND_URLS` env var                                         |
-| **MongoDB Connection** | Commented out `await client.connect()`                                 | Actually connects + logs errors                                       |
-| **Firebase Config**    | Only from file (`plantKey.json`)                                       | From env var (Vercel) or file (local)                                 |
-| **Error Logging**      | Minimal                                                                | Helpful: logs allowed origins, DB connection status                   |
-| **Deployment Guide**   | None                                                                   | [DEPLOYMENT.md](./DEPLOYMENT.md) + [QUICK_START.md](./QUICK_START.md) |
+| Component              | Before                                       | After                                                                 |
+| ---------------------- | -------------------------------------------- | --------------------------------------------------------------------- |
+| **Frontend API URL**   | Hardcoded: `car-rental-plantform.vercel.app` | Dynamic: reads `VITE_API_BASE` env var                                |
+| **Backend CORS**       | Hardcoded allowed origins                    | Reads `FRONTEND_URLS` env var                                         |
+| **MongoDB Connection** | Commented out `await client.connect()`       | Actually connects + logs errors                                       |
+| **Firebase Config**    | Only from file (`plantKey.json`)             | From env var (Vercel) or file (local)                                 |
+| **Error Logging**      | Minimal                                      | Helpful: logs allowed origins, DB connection status                   |
+| **Deployment Guide**   | None                                         | [DEPLOYMENT.md](./DEPLOYMENT.md) + [QUICK_START.md](./QUICK_START.md) |
 
 ---
 
@@ -163,7 +163,7 @@ Frontend displays cars to user ✅
 
 ```
 OLD SETUP:
-Frontend URL hardcoded to: https://car-rental-plantform-1on34o919-cardioy.vercel.app
+Frontend URL hardcoded to: car-rental-plantform.vercel.app
 
 When deployed to NETLIFY:
   → Vite builds frontend
@@ -175,7 +175,7 @@ When deployed to NETLIFY:
   → Localhost doesn't exist on Netlify → Connection refused ❌
 
 WHY LOCALHOST IS FALLBACK:
-  → src/api.js: import.meta.env.VITE_API_BASE || "https://car-rental-plantform-1on34o919-cardioy.vercel.app"
+  → src/api.js: import.meta.env.VITE_API_BASE || "car-rental-plantform.vercel.app"
   → If VITE_API_BASE not set, use localhost
   → If VITE_API_BASE not set on Netlify → uses localhost → error
 ```

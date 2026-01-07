@@ -2,7 +2,7 @@
 
 ## Problem
 
-Frontend on Netlify showed error: `GET https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+Frontend on Netlify showed error: `GET car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 - Reason: Frontend tried to reach `localhost:3000` (fallback) instead of Vercel backend
 - Root cause: `VITE_API_BASE` environment variable not set during Netlify build
@@ -73,7 +73,7 @@ git push origin main
    - `DB_PASSWORD` = Your MongoDB password
    - `FRONTEND_URLS` = Leave blank for now (will update after step 3)
 7. Scroll down and click **"Redeploy"** the latest deployment
-8. **Save the Vercel URL** shown in the deployment (e.g., `https://car-rental-plantform-1on34o919-cardioy.vercel.app`)
+8. **Save the Vercel URL** shown in the deployment (e.g., `car-rental-plantform.vercel.app`)
 
 ### Step 3: Deploy Frontend to Netlify (15 min)
 
@@ -142,7 +142,7 @@ git push origin main
 ### Before (Broken):
 
 ```
-Frontend code: fetch("https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars")
+Frontend code: fetch("car-rental-plantform.vercel.app/api/cars")
               ↓ (hardcoded URL)
 Netlify build: JavaScript contains hardcoded URL
               ↓
@@ -154,7 +154,7 @@ Result: Network error ❌
 ### After (Fixed):
 
 ```
-Netlify env var: VITE_API_BASE = https://car-rental-plantform-1on34o919-cardioy.vercel.app
+Netlify env var: VITE_API_BASE = car-rental-plantform.vercel.app
               ↓ (set before build)
 Vite build: Reads env var and embeds in JavaScript
               ↓
@@ -167,7 +167,7 @@ Result: Data loads successfully ✅
 
 ## 🐛 Troubleshooting
 
-### Error: `GET https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 **Cause:** `VITE_API_BASE` not set on Netlify
 
@@ -189,7 +189,7 @@ Result: Data loads successfully ✅
 **Fix:**
 
 1. Test backend directly: Open your Vercel URL in browser
-   - Example: `https://car-rental-plantform-1on34o919-cardioy.vercel.app`
+   - Example: `car-rental-plantform.vercel.app`
    - Should show: "Car Rental Server Running Successfully!"
 2. If error, check Vercel logs:
    - Go to **Project** → **Logs**
@@ -271,8 +271,7 @@ Vite embeds environment variables **at build time**. If `VITE_API_BASE` is:
 
 ```javascript
 export const API_BASE =
-  import.meta.env.VITE_API_BASE ||
-  "https://car-rental-plantform-1on34o919-cardioy.vercel.app";
+  import.meta.env.VITE_API_BASE || "car-rental-plantform.vercel.app";
 ```
 
 ---

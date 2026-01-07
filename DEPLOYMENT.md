@@ -2,7 +2,7 @@
 
 ## Problem Summary
 
-When deployed to Netlify, the frontend tries to reach `https://car-rental-plantform-1on34o919-cardioy.vercel.app` (the fallback), which doesn't exist in production. The backend is deployed to Vercel, but the frontend doesn't know the URL.
+When deployed to Netlify, the frontend tries to reach `car-rental-plantform.vercel.app` (the fallback), which doesn't exist in production. The backend is deployed to Vercel, but the frontend doesn't know the URL.
 
 **Solution:** Set `VITE_API_BASE` environment variable on Netlify pointing to your Vercel backend.
 
@@ -57,7 +57,7 @@ When deployed to Netlify, the frontend tries to reach `https://car-rental-plantf
 
    - Go to **Deployments** → **Redeploy** the latest build
 
-6. **Note your backend URL** (e.g., `https://car-rental-plantform-1on34o919-cardioy.vercel.app`)
+6. **Note your backend URL** (e.g., `car-rental-plantform.vercel.app`)
 
 ---
 
@@ -85,7 +85,7 @@ When deployed to Netlify, the frontend tries to reach `https://car-rental-plantf
    - Click **"Edit variables"**
    - Add:
      - **Key:** `VITE_API_BASE`
-     - **Value:** `https://car-rental-plantform-1on34o919-cardioy.vercel.app` (replace with your actual Vercel backend URL)
+     - **Value:** `car-rental-plantform.vercel.app` (replace with your actual Vercel backend URL)
 
 4. **Trigger a New Build**
    - Go to **Deploys**
@@ -107,7 +107,7 @@ When deployed to Netlify, the frontend tries to reach `https://car-rental-plantf
 
 ## Troubleshooting
 
-### Error: `GET https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 **Cause:** `VITE_API_BASE` is not set on Netlify.
 
@@ -126,7 +126,7 @@ When deployed to Netlify, the frontend tries to reach `https://car-rental-plantf
 
 1. Test backend directly in browser:
    ```
-   https://car-rental-plantform-1on34o919-cardioy.vercel.app/api/cars/top-rated
+   car-rental-plantform.vercel.app/api/cars/top-rated
    ```
    - Should return JSON cars data or error message
 2. Check Vercel function logs:
@@ -170,7 +170,7 @@ npm run dev
 Make sure `.env` in the root has:
 
 ```
-VITE_API_BASE=https://car-rental-plantform-1on34o919-cardioy.vercel.app
+VITE_API_BASE=car-rental-plantform.vercel.app
 ```
 
 ---
