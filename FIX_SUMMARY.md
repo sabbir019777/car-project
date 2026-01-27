@@ -2,7 +2,7 @@
 
 ## Root Cause
 
-Frontend deployed on Netlify was trying to reach `car-rental-plantform.vercel.app` (fallback) instead of the actual Vercel backend URL, because the `VITE_API_BASE` environment variable was never set during the Netlify build.
+Frontend deployed on Netlify was trying to reach `car-project-server-side.vercel.app` (fallback) instead of the actual Vercel backend URL, because the `VITE_API_BASE` environment variable was never set during the Netlify build.
 
 ## ✅ What Was Fixed
 
@@ -49,7 +49,7 @@ Frontend deployed on Netlify was trying to reach `car-rental-plantform.vercel.ap
    FRONTEND_URLS = https://your-site.netlify.app
    ```
 6. Click **Deployments** → **Redeploy** the latest build
-7. **Save the Vercel URL** (e.g., `car-rental-plantform.vercel.app`)
+7. **Save the Vercel URL** (e.g., `car-project-server-side.vercel.app`)
 
 ### **Step 2: Deploy Frontend (Netlify)**
 
@@ -63,7 +63,7 @@ Frontend deployed on Netlify was trying to reach `car-rental-plantform.vercel.ap
 6. Go to **Site Settings** → **Build & deploy** → **Environment**
 7. Click **"Edit variables"** and add:
    ```
-   VITE_API_BASE = car-rental-plantform.vercel.app
+   VITE_API_BASE = car-project-server-side.vercel.app
    ```
    (Replace with your actual Vercel URL from Step 1)
 8. Go to **Deploys** → **Trigger deploy** → **Deploy site**
@@ -140,7 +140,7 @@ VITE_API_BASE = https://your-vercel-backend.vercel.app
 
 ```
 # Root .env.local
-VITE_API_BASE=car-rental-plantform.vercel.app
+VITE_API_BASE=car-project-server-side.vercel.app
 
 # server/.env
 DB_USERNAME=local_mongo_user
@@ -162,7 +162,7 @@ For Vercel, consider using `FIREBASE_SERVICE_ACCOUNT` env var instead of the fil
 
 ## 📞 If You Still Get Errors
 
-1. **"GET car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED"**
+1. **"GET car-project-server-side.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED"**
    → `VITE_API_BASE` not set on Netlify. Check Netlify env vars and rebuild.
 
 2. **"Failed to load cars. Please ensure backend server is running on port 3000"**

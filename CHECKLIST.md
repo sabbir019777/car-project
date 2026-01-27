@@ -58,14 +58,14 @@ Use this checklist to track your deployment progress.
 
 ## Troubleshooting
 
-### Error: `GET car-rental-plantform.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
+### Error: `GET car-project-server-side.vercel.app/api/cars/top-browse net::ERR_CONNECTION_REFUSED`
 
 **Problem:** Frontend still trying to hit localhost.
 
 **Solution:**
 
 1. Check Netlify `VITE_API_BASE` is set correctly (go to Site Settings → Environment)
-2. Verify Vercel URL is correct (e.g., `car-rental-plantform.vercel.app`)
+2. Verify Vercel URL is correct (e.g., `car-project-server-side.vercel.app`)
 3. **Trigger a new deploy** on Netlify (previous build cached old fallback)
 4. Wait for build to complete and test again
 

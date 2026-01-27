@@ -7,7 +7,7 @@
 **File: `.env.local` (root directory)**
 
 ```bash
-VITE_API_BASE=car-rental-plantform.vercel.app
+VITE_API_BASE=car-project-server-side.vercel.app
 ```
 
 **File: `server/.env`**
@@ -51,7 +51,7 @@ PORT=3000
 
 | Key             | Value                   | Example                           |
 | --------------- | ----------------------- | --------------------------------- |
-| `VITE_API_BASE` | Your Vercel backend URL | `car-rental-plantform.vercel.app` |
+| `VITE_API_BASE` | Your Vercel backend URL | `car-project-server-side.vercel.app` |
 
 **When to set:**
 
@@ -109,7 +109,7 @@ PORT=3000
 
 ```bash
 # In browser, visit:
-car-rental-plantform.vercel.app/
+car-project-server-side.vercel.app/
 
 # Should see:
 Car Rental Server Running Successfully!
