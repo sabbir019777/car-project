@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
-
 import { endpoint } from "../api";
-
 import {
   FaTrashAlt,
   FaCar,
@@ -11,19 +8,14 @@ import {
   FaMapMarkerAlt,
   FaCogs,
 } from "react-icons/fa";
-
 import Swal from "sweetalert2";
 
 const ManageAllCars = () => {
   const [allCars, setAllCars] = useState([]);
-
   const [loading, setLoading] = useState(true);
-
-
 
   const fetchAllCars = async () => {
     try {
-     
       let token = null;
       try {
         const { auth } = await import("../Firebase/Firebase.config");
@@ -49,25 +41,37 @@ const ManageAllCars = () => {
   }, []);
 
 
-
   const handleDelete = (id, name) => {
+    
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    
+
+    const restrictedEmails = ["admin@gmail.com", "ta@gmail.com"];
+
+
+    if (user && restrictedEmails.includes(user.email)) {
+       Swal.fire({
+         title: "Action Restricted",
+         text: "This is a demo account. You can only view the data, but you cannot delete or modify it.",
+         icon: "error",
+         confirmButtonColor: "#EF4444",
+         background: "#111827",
+         color: "#fff",
+       });
+       return; 
+    }
+
+  
     Swal.fire({
       title: `Confirm Deletion?`,
-
       text: `You are about to remove "${name}" from the system. This action is irreversible.`,
-
       icon: "warning",
-
       showCancelButton: true,
-
       confirmButtonColor: "#EF4444",
-
       cancelButtonColor: "#374151",
-
       confirmButtonText: "Yes, Remove Listing",
-
       background: "#111827",
-
       color: "#fff",
     }).then(async (result) => {
       if (result.isConfirmed) {
@@ -102,13 +106,11 @@ const ManageAllCars = () => {
   return (
     <div className="p-4 md:p-8 space-y-8 animate-in fade-in duration-500">
       {/* Header Section */}
-
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gray-800/40 p-8 rounded-[2.5rem] border border-gray-700 shadow-xl">
         <div>
           <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
             Vehicle <span className="text-amber-500">Inventory</span>
           </h2>
-
           <p className="text-gray-400 mt-1 font-medium italic text-sm">
             Total {allCars.length} listings found across the platform.
           </p>
@@ -120,20 +122,15 @@ const ManageAllCars = () => {
       </div>
 
       {/* Table Container */}
-
       <div className="bg-gray-800/30 rounded-[2.5rem] border border-gray-700 shadow-2xl overflow-hidden backdrop-blur-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-800/80 text-gray-400 uppercase text-[11px] font-black tracking-[0.2em]">
                 <th className="px-8 py-5">Vehicle Details</th>
-
                 <th className="px-8 py-5">Provider Info</th>
-
                 <th className="px-8 py-5">Rate</th>
-
                 <th className="px-8 py-5">Availability</th>
-
                 <th className="px-8 py-5 text-center">Admin Actions</th>
               </tr>
             </thead>
@@ -158,7 +155,6 @@ const ManageAllCars = () => {
                         <div className="text-white font-black text-lg group-hover:text-amber-500 transition-colors">
                           {car.name}
                         </div>
-
                         <div className="text-gray-500 text-xs flex items-center gap-1 mt-1 font-bold">
                           <FaMapMarkerAlt className="text-amber-600" />{" "}
                           {car.location}
@@ -173,7 +169,6 @@ const ManageAllCars = () => {
                         <FaUser className="text-amber-500 text-[10px]" />{" "}
                         {car.providerEmail}
                       </span>
-
                       <span className="text-[10px] text-gray-500 mt-1 uppercase font-black">
                         ID: {car._id.substring(0, 8)}
                       </span>
@@ -202,7 +197,6 @@ const ManageAllCars = () => {
                             : "bg-red-500"
                         } animate-pulse`}
                       ></span>
-
                       {car.status}
                     </div>
                   </td>
@@ -223,24 +217,14 @@ const ManageAllCars = () => {
         </div>
       </div>
 
-      {/* Custom Animations CSS */}
-
       <style>{`
-
                 .animate-spin-slow {
-
                     animation: spin 6s linear infinite;
-
                 }
-
                 @keyframes spin {
-
                     from { transform: rotate(0deg); }
-
                     to { transform: rotate(360deg); }
-
                 }
-
             `}</style>
     </div>
   );

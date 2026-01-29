@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-hot-toast";
+import Swal from "sweetalert2"; 
 
 const Profile = ({ user }) => {
   const navigate = useNavigate();
@@ -22,12 +23,43 @@ const Profile = ({ user }) => {
   const [showSecret, setShowSecret] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const checkDemoUser = () => {
+    const restrictedEmails = ["admin@gmail.com", "ta@gmail.com"];
+    if (user && restrictedEmails.includes(user.email)) {
+      Swal.fire({
+        title: "Action Restricted",
+        text: "This is a demo account. You cannot modify profile details or change roles.",
+        icon: "error",
+        confirmButtonColor: "#EF4444",
+        background: "#111827",
+        color: "#fff",
+      });
+      return true; 
+    }
+    return false; 
+  };
+
+  const handleUpdateProfileClick = () => {
+ 
+    if (checkDemoUser()) return;
+    
+
+    navigate("/dashboard/update-profile");
+  };
+
+  const handleBecomeAdminClick = () => {
+
+     if (checkDemoUser()) return;
+
+     setShowAdminModal(true);
+  };
+
   const handleBecomeAdmin = async () => {
+    if (!user) return toast.error("User not found!");
     if (!secretKey) return toast.error("Please enter the secret key!");
 
     setLoading(true);
     try {
-      // ✅ ফিক্স: ইমেইল চেক করার শর্তটি বাদ দেওয়া হয়েছে। এখন যেকোনো ইউজার পাসওয়ার্ড দিলেই হবে।
       if (secretKey !== "Sabbir@1234") {
         toast.error("Invalid secret key!");
         setLoading(false);
@@ -97,13 +129,14 @@ const Profile = ({ user }) => {
                 </h3>
                 <div className="flex gap-3">
                   <button
-                    onClick={() => navigate("/dashboard/update-profile")}
+                    onClick={handleUpdateProfileClick} 
                     className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 dark:text-white text-slate-900 font-black rounded-xl uppercase tracking-wider text-xs transition-all border border-transparent hover:border-amber-500"
                   >
                     <FaUserEdit /> Update Profile
                   </button>
+                  
                   <button
-                    onClick={() => setShowAdminModal(true)}
+                    onClick={handleBecomeAdminClick} 
                     className="flex items-center justify-center gap-2 px-6 py-3 bg-amber-500 hover:bg-amber-600 text-black font-black rounded-xl uppercase tracking-wider text-xs transition-all shadow-lg hover:shadow-amber-500/50"
                   >
                     <FaShieldAlt /> Become Admin
@@ -159,7 +192,7 @@ const Profile = ({ user }) => {
         </motion.div>
       </div>
 
-      {/* 🔴 Become Admin Modal with Eye Icon 🔴 */}
+      {/*  Become Admin Modal  */}
       <AnimatePresence>
         {showAdminModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
@@ -185,7 +218,7 @@ const Profile = ({ user }) => {
               <div className="relative group">
                 <input
                   type={showSecret ? "text" : "password"}
-                  placeholder="Secret Key (Admin Pannel)"
+                  placeholder="Secret Key (Admin Panel)"
                   value={secretKey}
                   onChange={(e) => setSecretKey(e.target.value)}
                   className="w-full p-4 pr-12 bg-slate-50 dark:bg-slate-800 dark:text-white border border-transparent focus:border-amber-500 rounded-2xl transition-all outline-none font-bold"
@@ -209,7 +242,7 @@ const Profile = ({ user }) => {
                 <button
                   onClick={handleBecomeAdmin}
                   disabled={loading}
-                  className="flex-1 py-4 bg-amber-500 hover:bg-amber-600 text-black font-black rounded-2xl shadow-lg transition-all uppercase tracking-widest text-xs"
+                  className="flex-1 py-4 bg-amber-500 hover:bg-amber-600 text-black font-black rounded-2xl shadow-lg transition-all uppercase tracking-widest text-xs disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Verifying..." : "Confirm Access"}
                 </button>
@@ -223,6 +256,7 @@ const Profile = ({ user }) => {
 };
 
 // Sub-components
+
 const InfoItem = ({ label, value, mono, highlight }) => (
   <div className="space-y-2 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
     <label className="text-[10px] font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest">
@@ -238,25 +272,32 @@ const InfoItem = ({ label, value, mono, highlight }) => (
   </div>
 );
 
-const StatsCard = ({ delay, icon, label, value, color }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay }}
-    className={`p-6 bg-gradient-to-br from-${color}-500/10 to-${color}-500/5 rounded-2xl border border-${color}-500/20 hover:border-${color}-500/50 transition-all group`}
-  >
-    <div
-      className={`text-${color}-500 text-2xl mb-3 group-hover:scale-110 transition-transform`}
+const StatsCard = ({ delay, icon, label, value, color }) => {
+  const colorVariants = {
+    blue: "bg-blue-500/5 border-blue-500/20 hover:border-blue-500/50 text-blue-500",
+    amber: "bg-amber-500/5 border-amber-500/20 hover:border-amber-500/50 text-amber-500",
+    green: "bg-green-500/5 border-green-500/20 hover:border-green-500/50 text-green-500",
+    purple: "bg-purple-500/5 border-purple-500/20 hover:border-purple-500/50 text-purple-500",
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay }}
+      className={`p-6 rounded-2xl border transition-all group ${colorVariants[color] || colorVariants.blue}`}
     >
-      {icon}
-    </div>
-    <h4 className="font-black dark:text-white text-slate-900 uppercase tracking-widest text-[10px] mb-2">
-      {label}
-    </h4>
-    <p className="text-slate-900 dark:text-white text-xl font-black tracking-tight">
-      {value}
-    </p>
-  </motion.div>
-);
+      <div className={`text-2xl mb-3 group-hover:scale-110 transition-transform`}>
+        {icon}
+      </div>
+      <h4 className="font-black dark:text-white text-slate-900 uppercase tracking-widest text-[10px] mb-2">
+        {label}
+      </h4>
+      <p className="text-slate-900 dark:text-white text-xl font-black tracking-tight">
+        {value}
+      </p>
+    </motion.div>
+  );
+};
 
 export default Profile;

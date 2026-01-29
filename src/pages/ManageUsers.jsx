@@ -3,7 +3,7 @@ import axios from "axios";
 import { endpoint } from "../api";
 import { FaUsers, FaUserShield, FaUserCircle, FaEnvelope, FaTrashAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { toast } from "react-hot-toast";
+import Swal from "sweetalert2"; 
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -27,19 +27,63 @@ const ManageUsers = () => {
     fetchUsers();
   }, []);
 
+
   const handleDeleteUser = async (id) => {
-    if (!window.confirm("Are you sure you want to remove this user?")) return;
     
-    try {
-      const token = localStorage.getItem("token");
-      await axios.delete(endpoint(`/api/admin/users/${id}`), {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      toast.success("User removed successfully!");
-      setUsers(users.filter(u => u._id !== id)); 
-    } catch (error) {
-      toast.error("Failed to delete user");
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    
+
+    const restrictedEmails = ["admin@gmail.com", "ta@gmail.com"];
+
+
+    if (user && restrictedEmails.includes(user.email)) {
+       Swal.fire({
+         title: "Action Restricted",
+         text: "This is a demo account. You can only view the data, but you cannot delete or modify it.",
+         icon: "error",
+         confirmButtonColor: "#EF4444",
+         background: "#111827",
+         color: "#fff",
+       });
+       return;
     }
+
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#EF4444",
+      cancelButtonColor: "#374151",
+      confirmButtonText: "Yes, delete user!",
+      background: "#111827",
+      color: "#fff"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const token = localStorage.getItem("token");
+          await axios.delete(endpoint(`/api/admin/users/${id}`), {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          
+          setUsers(users.filter(u => u._id !== id)); 
+          
+          Swal.fire(
+            "Deleted!",
+            "User has been removed.",
+            "success"
+          );
+        } catch (error) {
+          Swal.fire(
+            "Error!",
+            "Failed to delete user.",
+            "error"
+          );
+        }
+      }
+    });
   };
 
   if (loading) return (
