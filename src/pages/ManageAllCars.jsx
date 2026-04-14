@@ -56,7 +56,7 @@ const ManageAllCars = () => {
         try {
           const token = localStorage.getItem("token");
 
-          await axios.delete(endpoint(`/api/car/my-listings/${id}`), {
+          await axios.delete(endpoint(`/api/admin/cars/${id}`), {
             headers: { Authorization: `Bearer ${token}` },
           });
 
